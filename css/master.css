@@ -1,0 +1,17 @@
+body {
+  background-color: black;
+  font-family: "Times New Roman";
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
+  border: 10px solid white;
+}
