@@ -1,9 +1,9 @@
 # Things to do
 
 - Implement Basic snake object (done)
+- Implement movement and redrawing (done)
+- Deal with long snake (done)
 
-- Implement movement and redrawing
-- Deal with long snake
 - Create food drops
 - Make snake grow longer by eating
 - Collision detection and loss condition
