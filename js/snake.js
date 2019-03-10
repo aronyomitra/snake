@@ -45,11 +45,59 @@ let snake = {
   {
     if (utilities.isEqual(snake.head, crumb.pos))
     {
+      crumb.isEaten = true;
       snake.body.length++;
       score += crumb.score;
 
       crumb = new Food();
       crumb.initialize();
+    }
+  },
+
+  checkCollison: function()
+  {
+    let isLost = false;
+    // Walls
+    if (snake.head[0] <= 0)
+    {
+      isLost = true;
+    }
+    else if (snake.head[0] >= canvas_size[0])
+    {
+      isLost = true;
+    }
+    if (snake.head[1] <= 0)
+    {
+      isLost = true;
+    }
+    else if (snake.head[1] >= canvas_size[1])
+    {
+      isLost = true;
+    }
+
+    if (isLost)
+    {
+      // console.log('wall');
+      noLoop();
+      isLost = false;
+      alert("Crashed against wall. Game over..");
+      location.reload();
+    }
+
+    for (let i = 1; i < snake.body.length; i++)
+    {
+      if (utilities.isEqual(snake.head, snake.body[i]))
+      {
+        isLost = true;
+      }
+    }
+
+    if (isLost)
+    {
+      // console.log("Tangle");
+      noLoop();
+      alert("Got tangled. Game over..");
+      location.reload();
     }
   }
 };
@@ -69,11 +117,12 @@ function setup()
 function draw()
 {
   background(0);
-  snake.draw();
-  snake.move();
-  snake.eat();
-
   crumb.draw();
+
+  snake.draw();
+  snake.checkCollison();
+  snake.eat();
+  snake.move();
 
   // Display score
   document.getElementById('score').innerHTML = "Score: " + score;
@@ -107,7 +156,9 @@ function keyPressed()
 }
 
 // Clicking will increase the length of the snake by one
+// For quick debugs
 function mousePressed()
 {
-  snake.body.length++;
+  // snake.body.length++;
+  // snake.move();
 }

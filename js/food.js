@@ -18,6 +18,7 @@ function Food()
   this.draw = function()
   {
     rectMode(CENTER);
-    rect(this.pos[0], this.pos[1], scaling_factor, scaling_factor);
+    if (!this.isEaten)
+      rect(this.pos[0], this.pos[1], scaling_factor, scaling_factor);
   }
 }
